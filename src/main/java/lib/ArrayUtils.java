@@ -1,4 +1,4 @@
-package lib.lib;
+package lib;
 
 import java.util.Arrays;
 import java.util.List;

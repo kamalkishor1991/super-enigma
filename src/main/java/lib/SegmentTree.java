@@ -1,4 +1,4 @@
-package lib.lib;
+package lib;
 
 /**
  * Not fully tested

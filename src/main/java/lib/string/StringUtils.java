@@ -1,4 +1,4 @@
-package lib.lib.string;
+package lib.string;
 
 
 public class StringUtils {

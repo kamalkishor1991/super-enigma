@@ -1,4 +1,4 @@
-package lib.lib.string;
+package lib.string;
 
 public class SuffixArrayX {
     private static final int CUTOFF = 5;   // cutoff to insertion sort (any value between 0 and 12)

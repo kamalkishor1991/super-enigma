@@ -1,4 +1,4 @@
-package lib.lib.graph;
+package lib.graph;
 
 import java.util.*;
 

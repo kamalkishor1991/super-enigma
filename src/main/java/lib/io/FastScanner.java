@@ -1,4 +1,4 @@
-package lib.lib.io;
+package lib.io;
 
 import java.io.BufferedReader;
 import java.io.IOException;

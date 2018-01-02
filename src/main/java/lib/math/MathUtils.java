@@ -1,4 +1,4 @@
-package lib.lib.math;
+package lib.math;
 
 
 public class MathUtils {
