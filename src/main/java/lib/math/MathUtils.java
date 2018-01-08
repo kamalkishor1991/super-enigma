@@ -131,4 +131,10 @@ public class MathUtils {
         return pow(n, MOD - 2, MOD);
     }
 
+
+    public static long max(long a, long... b) {
+       long max = a;
+       for (long el : b) max = Math.max(max, el);
+       return max;
+    }
 }
