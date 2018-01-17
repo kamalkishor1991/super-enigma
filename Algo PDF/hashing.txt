@@ -1,0 +1,9 @@
+s[0]*31^(n-1) + s[1]*31^(n-2) + ... + s[n-1]
+Hash code for String in java
+
+/**
+     * Returns index for hash code h.
+*/
+static int indexFor(int h, int length) {
+    return h & (length-1);
+}

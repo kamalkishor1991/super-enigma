@@ -1,0 +1,6 @@
+shortest path problem with negative weight that contain cycle is np-complete.
+knapshak problem.
+
+halting problem=given a program and a input for it will it eventully halt.
+so this is a undesidable problem.
+
