@@ -32,18 +32,18 @@ public class MathUtils {
 
     public static int gcd(int a, int b) {
         while (b != 0) {
-            int r = a % b;
-            a = b;
-            b = r;
+            int t = b;
+            b = a % b;
+            a = t;
         }
         return a;
     }
 
     public static long gcd(long a, long b) {
         while (b != 0) {
-            long r = a % b;
-            a = b;
-            b = r;
+            long t = b;
+            b = a % b;
+            a = t;
         }
         return a;
     }
@@ -133,8 +133,8 @@ public class MathUtils {
 
 
     public static long max(long a, long... b) {
-       long max = a;
-       for (long el : b) max = Math.max(max, el);
-       return max;
+        long max = a;
+        for (long el : b) max = Math.max(max, el);
+        return max;
     }
 }

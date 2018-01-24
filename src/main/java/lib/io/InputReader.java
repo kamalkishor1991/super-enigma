@@ -18,6 +18,10 @@ public class InputReader {
 		this.stream = stream;
 	}
 
+	public InputStream getStream() {
+	    return stream;
+    }
+
 	public int read() {
 		if (numChars == -1) {
 			throw new InputMismatchException();

@@ -52,7 +52,8 @@ public class ArrayUtils {
     public static List<Long> toList(long a[]) {
         return Arrays.stream(a).boxed().collect(Collectors.toList());
     }
-    public int[][] create2dIntArray(int d1, int d2, int defaultValue) {
+
+    public static int[][] create2dIntArray(int d1, int d2, int defaultValue) {
         int results[][] = new int[d1][d2];
         fill(results, defaultValue);
         return results;

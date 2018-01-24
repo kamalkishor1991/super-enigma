@@ -1,49 +1,64 @@
 package lib;
 
+import java.util.function.BiFunction;
+
 /**
- * Not fully tested
+ * Not fully tested, query method is not tested
  */
 @Deprecated
-public class SegmentTree {
-  long []tree;
-  long []a;
-  public SegmentTree(long a[]) {
-    tree = new long[(int) (a.length * Math.log(a.length) * 2) + 5];
-    this.a = a;
-    buildSegTree(0, a.length,1, a);
-  }
-
-  private long buildSegTree(int l, int r, int index, long[] a) {
-    if (l >= r) return Long.MAX_VALUE;
-    if (l + 1 == r ) {
-      return tree[index] = a[l];
-    } else {
-      int r1 = (l + r) / 2;
-      int l2 = (r1);
-      return tree[index] = Math.min(buildSegTree(l, r1, (index) * 2, a), buildSegTree(l2, r, index * 2 + 1, a));
+public class SegmentTree<T> {
+    private T[] a;
+    private T[] tree;
+    private BiFunction<T, T, T> function;
+    public SegmentTree(T a[], BiFunction<T, T, T> function) {
+        this.a = a;
+        tree =  (T[])new Object[3 * a.length + 1];
+        build(1, 0, a.length - 1);
+        this.function = function;
     }
-  }
-
-  public long query(int l, int r) {
-    return query(0, a.length, l, r, 1);
-  }
-
-
-  public long query(int l, int r, int ql, int qr, int index) {
-    if (l >= r) return Integer.MAX_VALUE;
-    if (ql == l && qr == r) {
-      return tree[index];
+    public T build(int root, int l, int r) {
+        if (l == r) {
+            return tree[root] = a[l];
+        } else {
+            T left = build(root * 2, l, (l + r) / 2);
+            T right = build(root * 2 + 1, ((l + r) / 2) + 1, r);
+            return tree[root] = function.apply(left, right);
+        }
+    }
+    public void update(int pos, T x) {
+        a[pos] = x;
+        update(pos, 1, 0, a.length - 1);
     }
 
-    int r1 = (l + r) / 2;
-    int l2 = r1;
-    if (ql >= l && qr <= r1) {
-      return query(l, r1, ql, qr, index * 2);
-    }
-    if (ql >= l2 && qr <= r) {
-      return query(l2, r, ql, qr, index * 2 + 1);
+    private T update(int pos, int root, int left, int right) {
+        if (pos < left || pos > right) {
+            return tree[root];
+        } else if (left == right) {
+            return tree[root] = a[pos];
+        } else {
+            int mid = (left + right) / 2;
+            T leftResult = update(pos, 2 * root, left, mid);
+            T rightResult = update(pos, 2 * root + 1, mid + 1, right);
+            tree[root] = function.apply(leftResult, rightResult);
+            return tree[root];
+        }
+
     }
 
-    return Math.min(query(l, r1, ql, r1, index * 2), query(l2, r, l2, qr, index * 2 + 1));
-  }
+    public T query(int l, int r) {
+        return query(1, 0, a.length - 1, l, r);
+    }
+
+    private T query(int root, int l, int r, int lq, int rq) {
+        if (rq < l || lq > r) return null;
+        if (l == r) return tree[root];
+        if (lq <= l && rq >= r  ) return tree[root];
+        int mid = (l + r) / 2;
+        T leftResult = query(root * 2, l, mid, lq, rq);
+        T rightResult = query(root * 2 + 1, mid + 1, r, lq, rq);
+        if (leftResult == null) return rightResult;
+        if (rightResult == null) return leftResult;
+        return function.apply(leftResult, rightResult);
+
+    }
 }
