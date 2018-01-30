@@ -1,22 +1,22 @@
 package lib;
 
+import java.util.Objects;
 import java.util.function.BiFunction;
 
-/**
- * Not fully tested, query method is not tested
- */
-@Deprecated
 public class SegmentTree<T> {
     private T[] a;
     private T[] tree;
     private BiFunction<T, T, T> function;
     public SegmentTree(T a[], BiFunction<T, T, T> function) {
+        Objects.requireNonNull(function);
         this.a = a;
-        tree =  (T[])new Object[3 * a.length + 1];
-        build(1, 0, a.length - 1);
+        tree =  (T[])new Object[3 * a.length + 10];
         this.function = function;
+        build(1, 0, a.length - 1);
+
     }
-    public T build(int root, int l, int r) {
+
+    private T build(int root, int l, int r) {
         if (l == r) {
             return tree[root] = a[l];
         } else {

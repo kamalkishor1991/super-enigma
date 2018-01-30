@@ -256,7 +256,7 @@ public class InputReader {
 	public int[][] parseInt2D(int n,int m)  {
 		int r[][]=new int[n][m];
 		for(int i=0;i<n;i++){
-			readLine();
+			//readLine();
 			for(int j=0;j<m;j++){
 				r[i][j]=nextInt();
 			}
