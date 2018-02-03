@@ -5,6 +5,8 @@ import java.io.BufferedWriter;
 import java.io.OutputStreamWriter;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.List;
+import java.util.Objects;
 
 public class OutputWriter {
     private final PrintWriter writer;
@@ -28,6 +30,13 @@ public class OutputWriter {
             }
             writer.print(objects[i]);
         }
+    }
+
+    public void println(List<?> list) {
+        for (Object e : list) {
+            writer.print(e.toString() + " ");
+        }
+        writer.println();
     }
 
     public void print(int[] array) {
