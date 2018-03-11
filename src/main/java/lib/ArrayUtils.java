@@ -75,4 +75,22 @@ public class ArrayUtils {
         fill(ret, defaultValue);
         return ret;
     }
+
+    public static int[] reverse(int[] a) {
+        int ra[] = new int[a.length];
+        int index = 0;
+        for (int i = a.length - 1; i >= 0; i--) {
+            ra[index++] = a[i];
+        }
+        return ra;
+    }
+
+    public static long[] reverse(long[] a) {
+        long ra[] = new long[a.length];
+        int index = 0;
+        for (int i = a.length - 1; i >= 0; i--) {
+            ra[index++] = a[i];
+        }
+        return ra;
+    }
 }
