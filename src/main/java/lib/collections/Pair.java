@@ -8,7 +8,7 @@ public class Pair<U, V> implements Comparable<Pair<U, V>> {
         return new Pair<>(first, second);
     }
 
-    private Pair(U first, V second) {
+    public Pair(U first, V second) {
         this.first = first;
         this.second = second;
     }

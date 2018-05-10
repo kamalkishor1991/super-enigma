@@ -8,6 +8,7 @@ public class MathUtils {
 
     public static long pow(long a, long b, long MOD) {
         long ans = 1;
+        a %= MOD;
         while (b != 0) {
             if (b % 2 == 1) {
                 ans = (ans * a) % MOD;
@@ -182,6 +183,18 @@ public class MathUtils {
         return min;
     }
 
+    public static double min(double a, double... b) {
+        double min = a;
+        for (double el : b) min = Math.min(min, el);
+        return min;
+    }
+
+    public static double max(double a, double... b) {
+        double max = a;
+        for (double el : b) max = Math.max(max, el);
+        return max;
+    }
+
     public static long numberOfDivisors(int n) {
         long ans = 1;
         for (int i = 2; i * i <= n; i++) {
@@ -216,4 +229,6 @@ public class MathUtils {
         }
         return primes;
     }
+
+
 }

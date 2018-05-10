@@ -31,6 +31,20 @@ public class ArrayUtils {
         }
     }
 
+    public static void fill(long arr[][][], long value) {
+        for (long d1[][] : arr) {
+            for (long d2[] : d1) {
+                Arrays.fill(d2, value);
+            }
+        }
+    }
+
+    public static void fill(long arr[][], long value) {
+        for (long d2[] : arr) {
+            Arrays.fill(d2, value);
+        }
+
+    }
     public static void fill(short arr[][][], short value) {
         for (short d1[][] : arr) {
             for (short d2[] : d1) {
@@ -92,5 +106,29 @@ public class ArrayUtils {
             ra[index++] = a[i];
         }
         return ra;
+    }
+
+    public static Integer[] toBoxedArray(int a[]) {
+        Integer[] result = new Integer[a.length];
+        for (int i = 0;i < a.length; i++) {
+            result[i] = a[i];
+        }
+        return result;
+    }
+
+
+    public static char[] reverse(char[] a) {
+        char ra[] = new char[a.length];
+        int index = 0;
+        for (int i = a.length - 1; i >= 0; i--) {
+            ra[index++] = a[i];
+        }
+        return ra;
+    }
+
+    public static long[][] create2DLongArray(int d1, int d2, long defaultValue) {
+        long ret[][] = new long[d1][d2];
+        fill(ret, defaultValue);
+        return ret;
     }
 }

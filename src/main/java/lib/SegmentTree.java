@@ -10,8 +10,13 @@ public class SegmentTree<T> {
     public SegmentTree(T a[], BiFunction<T, T, T> function) {
         Objects.requireNonNull(function);
         this.a = a;
-        tree =  (T[])new Object[3 * a.length + 10];
-        this.function = function;
+        int size = (1 << (int) Math.ceil((Math.log(a.length) / Math.log(2)) + 1));
+        tree =  (T[])new Object[size];
+        this.function =  (x1, x2) -> {
+          if (x1 == null) return x2;
+          if (x2 == null) return x1;
+          return function.apply(x1, x2);
+        };
         build(1, 0, a.length - 1);
 
     }
@@ -56,8 +61,6 @@ public class SegmentTree<T> {
         int mid = (l + r) / 2;
         T leftResult = query(root * 2, l, mid, lq, rq);
         T rightResult = query(root * 2 + 1, mid + 1, r, lq, rq);
-        if (leftResult == null) return rightResult;
-        if (rightResult == null) return leftResult;
         return function.apply(leftResult, rightResult);
 
     }
