@@ -2,6 +2,8 @@ package lib;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 public class ArrayUtils {
@@ -130,5 +132,27 @@ public class ArrayUtils {
         long ret[][] = new long[d1][d2];
         fill(ret, defaultValue);
         return ret;
+    }
+
+    public static void shuffle(long[] arr){
+        int n = arr.length;
+        Random rnd = new Random();
+        for(int i=0; i<n; ++i){
+            long tmp = arr[i];
+            int randomPos = i + rnd.nextInt(n-i);
+            arr[i] = arr[randomPos];
+            arr[randomPos] = tmp;
+        }
+    }
+
+    public static void shuffle(int[] arr){
+        int n = arr.length;
+        Random rnd = new Random();
+        for(int i=0; i<n; ++i){
+            int tmp = arr[i];
+            int randomPos = i + rnd.nextInt(n-i);
+            arr[i] = arr[randomPos];
+            arr[randomPos] = tmp;
+        }
     }
 }
