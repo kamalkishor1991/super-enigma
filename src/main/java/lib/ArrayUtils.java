@@ -155,4 +155,10 @@ public class ArrayUtils {
             arr[randomPos] = tmp;
         }
     }
+
+    public static void swap(int i, int j, int a[]) {
+        int t = a[i];
+        a[i] = a[j];
+        a[j] = t;
+    }
 }

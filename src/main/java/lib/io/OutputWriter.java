@@ -5,8 +5,11 @@ import java.io.BufferedWriter;
 import java.io.OutputStreamWriter;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 
 public class OutputWriter {
     private final PrintWriter writer;
@@ -30,6 +33,34 @@ public class OutputWriter {
             }
             writer.print(objects[i]);
         }
+    }
+
+    public <T> void print(T[] a, Function<T, ?> function) {
+        for (int i = 0; i < a.length; i++) {
+            if (i != 0) {
+                writer.print(' ');
+            }
+            writer.print(function.apply(a[i]));
+        }
+    }
+
+    public <T> void println(T[] a, Function<T, ?> function) {
+        this.print(a, function);
+        this.println();
+    }
+
+    public <T> void print(List<T> a, Function<T, ?> function) {
+        for (int i = 0; i < a.size(); i++) {
+            if (i != 0) {
+                writer.print(' ');
+            }
+            writer.print(function.apply(a.get(i)));
+        }
+    }
+
+    public <T> void println(List<T> a, Function<T, ?> function) {
+        this.print(a, function);
+        this.println();
     }
 
     public void println(List<?> list) {
